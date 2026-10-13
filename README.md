@@ -1,6 +1,6 @@
 # TacnaGo API
 
-Backend de **TacnaGo**, una aplicación web para rutas turísticas y puntos de interés de la ciudad de Tacna.
+Backend de **TacnaGo**, una aplicación web y móvil para rutas turísticas y puntos de interés de la ciudad de Tacna.
 
 ## Tecnologías
 
@@ -12,8 +12,8 @@ Backend de **TacnaGo**, una aplicación web para rutas turísticas y puntos de i
 
 ## Requisitos
 
-- Python 3.10 o superior.
-- Un proyecto de Supabase con una base de datos PostgreSQL.
+- Python 3.10 o superior
+- Un proyecto de Supabase con base de datos PostgreSQL
 
 ## Instalación local
 
@@ -21,7 +21,7 @@ Clona el repositorio y entra en la carpeta del proyecto:
 
 ```bash
 git clone https://github.com/ESIS-DevTeam/tacnago-api.git
-cd tacnago
+cd tacnago-api
 ```
 
 Crea y activa un entorno virtual:
@@ -30,9 +30,9 @@ Crea y activa un entorno virtual:
 python -m venv venv
 
 # Windows PowerShell
-venv/Scripts/activate
+venv\Scripts\activate
 
-# Linux/macOS
+# Linux / macOS
 source venv/bin/activate
 ```
 
@@ -42,21 +42,19 @@ Instala las dependencias:
 pip install -r requirements.txt
 ```
 
-Configura la conexión de Supabase en un archivo `.env` en la raíz del proyecto:
+Configura la conexión de la base de datos en un archivo `.env` en la raíz del proyecto:
 
 ```env
-DATABASE_URL="<url>"
+DATABASE_URL=postgresql://usuario:password@host:puerto/dbname
 ```
 
-Usa la cadena de conexión PostgreSQL proporcionada por Supabase.
-
-Después de configurar la conexión, crea las tablas ejecutando una vez:
+Crea las tablas en la base de datos:
 
 ```bash
 python database.py
 ```
 
-Inicia el servidor:
+Inicia el servidor de desarrollo:
 
 ```bash
 uvicorn main:app --reload
@@ -70,8 +68,6 @@ Con el servidor iniciado:
 
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - ReDoc: `http://127.0.0.1:8000/redoc`
-- Esquema OpenAPI: `http://127.0.0.1:8000/openapi.json`
-- Comprobación básica: `GET /`
 
 ## Estructura del proyecto
 
@@ -79,13 +75,16 @@ Con el servidor iniciado:
 tacnago-api/
 ├── api/v1/routes/       # Endpoints FastAPI por recurso
 ├── core/                # Configuración de la aplicación
-├── db/                  # Base SQLAlchemy y modelos
+├── db/                  # Modelos y base SQLAlchemy
 ├── repositories/        # Acceso a datos
 ├── schemas/             # Validación y serialización Pydantic
 ├── services/            # Lógica de negocio
 ├── utils/               # Utilidades compartidas
-├── database.py          # Inicialización de tablas en Supabase
+├── database.py          # Inicialización de tablas
 ├── main.py              # Aplicación FastAPI
-├── requirements.txt     # Dependencias
-└── .env                 # Configuración local
+└── requirements.txt     # Dependencias
 ```
+
+## Licencia
+
+Distribuido bajo la licencia MIT.
