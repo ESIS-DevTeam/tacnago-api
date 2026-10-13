@@ -1,9 +1,9 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 
 class UserBase(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     avatar: Optional[str] = None
     bio: Optional[str] = None
 
@@ -15,9 +15,15 @@ class UserUpdate(BaseModel):
     avatar: Optional[str] = None
     bio: Optional[str] = None
 
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
 class UserResponse(UserBase):
     id: int
     is_active: bool
+    created_routes: Optional[int] = 0
+    completed_trips: Optional[int] = 0
 
     class Config:
         from_attributes = True
